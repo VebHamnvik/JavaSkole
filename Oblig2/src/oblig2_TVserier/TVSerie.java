@@ -1,15 +1,16 @@
 package oblig2_TVserier;
-
 import java.time.LocalDate;
 
 public class TVSerie {
     private String name;
     private String beskrivelse;
     private int episoder;
+    //Komposisjon og ikke antall episoder i serien
+    //Da vil episodene peke på serien
     private LocalDate utgivelse;
 
     //Konstruktør
-    private TVSerie(String name, String beskrivelse, int episoder, LocalDate utgivelse) {
+    public TVSerie(String name, String beskrivelse, int episoder, LocalDate utgivelse) {
         this.name = name;
         this.beskrivelse = beskrivelse;
         this.episoder = episoder;
@@ -49,7 +50,9 @@ public class TVSerie {
     }
 
     //Metoder
-
+    public void printInfo() {
+        System.out.println("Title: " + getName() + "\nDescription: " + getBeskrivelse() + "\nNumber of episodes: " + getEpisoder() + "\nRelease date: " + getUtgivelse());
+    }
 
 }
 
