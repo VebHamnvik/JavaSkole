@@ -1,19 +1,20 @@
 package oblig2_TVserier;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class TVSerie {
     private String name;
     private String beskrivelse;
-    private int episoder;
-    //Komposisjon og ikke antall episoder i serien
-    //Da vil episodene peke på serien
+    //private Episoder episoder;
+    private ArrayList<Episoder> episoder = new ArrayList<>();
     private LocalDate utgivelse;
+    private double gjennomsnittligSpilletid;
 
     //Konstruktør
-    public TVSerie(String name, String beskrivelse, int episoder, LocalDate utgivelse) {
+    public TVSerie(String name, String beskrivelse, LocalDate utgivelse) {
         this.name = name;
         this.beskrivelse = beskrivelse;
-        this.episoder = episoder;
+        //this.episoder = episoder;
         this.utgivelse = utgivelse;
     }
 
@@ -26,11 +27,14 @@ public class TVSerie {
         this.beskrivelse = beskrivelse;
     }
 
-    public void setEpisoder(int episoder) {
+    public void setEpisoder(ArrayList<Episoder> episoder) {
         this.episoder = episoder;
     }
 
-    //public void setUtgivelse()
+    public void setUtgivelse(LocalDate utgivelse) {
+        this.utgivelse = utgivelse;
+    }
+
 
     //Get
     public String getName() {
@@ -41,7 +45,7 @@ public class TVSerie {
         return beskrivelse;
     }
 
-    public int getEpisoder() {
+    public ArrayList<Episoder> getEpisoder() {
         return episoder;
     }
 
@@ -49,9 +53,39 @@ public class TVSerie {
         return utgivelse;
     }
 
+    public double getGjennomsnittligSpilletid() {
+        return gjennomsnittligSpilletid;
+    }
+
     //Metoder
-    public void printInfo() {
-        System.out.println("Title: " + getName() + "\nDescription: " + getBeskrivelse() + "\nNumber of episodes: " + getEpisoder() + "\nRelease date: " + getUtgivelse());
+    @Override
+    public String toString() {
+        return "Title: " + name + "\nDescription: " + beskrivelse + "\n" + episoder + "\nRelease date: " + utgivelse;
+    }
+
+    public void leggTilEpisode(Episoder episoder) {
+        this.episoder.add(episoder);
+    }
+
+    public ArrayList<Episoder> hentEpisoderISesong(int sesong) {
+        ArrayList <Episoder> riktigSesong = new ArrayList<>();
+        for (int v = 0; v < episoder.size(); v++) {
+            if (sesong == episoder.get(v).getSesongNr()) {
+                riktigSesong.add(episoder.get(v));
+            }
+        }
+        return riktigSesong;
+    }
+
+    // TODO: 30.01.2023 Fiks denne
+    public double oppdaterGjennomsnitt(int spilletid) {
+        double gjennomsnitt = spilletid;
+        for (Episoder episoder : episoder) {
+            int spilletid2 = episoder.getSpilletid();
+            gjennomsnitt += spilletid2;
+        }
+        gjennomsnittligSpilletid = gjennomsnitt/episoder.size();
+        return gjennomsnittligSpilletid;
     }
 
 }

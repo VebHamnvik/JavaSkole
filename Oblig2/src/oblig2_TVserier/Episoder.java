@@ -1,5 +1,7 @@
 package oblig2_TVserier;
 
+import java.util.ArrayList;
+
 class Episoder{
     private String title;
     private int episodeNr;
@@ -56,4 +58,11 @@ class Episoder{
     public void printInfo() {
         System.out.println("\nSeason: " + getSesongNr() + " Episode: " + getEpisodeNr() + "\nEpisode name: " + getTitle() + "\nThis episode runs for " + getSpilletid() + " minutes");
     }
+
+    @Override
+    public String toString() {
+        return "Sesong" + sesongNr + " Episode" + episodeNr + " " + title + "er " + spilletid + " minutter lang";
+    }
+
+
 }
