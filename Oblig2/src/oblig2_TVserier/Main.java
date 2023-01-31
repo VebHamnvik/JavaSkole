@@ -19,7 +19,7 @@ public class Main {
          */
         //Skriver ut informasjon om serien og episoden
 
-        //Testing for å se om nye funksjonen i leggTilEpisode funker, (oppgave 2.7)
+        //Testing for å se om nye funksjonen i leggTilEpisode funker, (oppgave 2.7 og 2.8)
         /* System.out.println(criticalRole);
         System.out.println("\n**********Mellomrom**********");
         Episoder test = new Episoder("Første Sesong", 1, 1, 35);
