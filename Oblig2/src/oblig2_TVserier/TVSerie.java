@@ -9,6 +9,7 @@ public class TVSerie {
     private ArrayList<Episoder> episoder = new ArrayList<>();
     private LocalDate utgivelse;
     private double gjennomsnittligSpilletid;
+    private int antallSesonger;
 
     //Konstruktør
     public TVSerie(String name, String beskrivelse, LocalDate utgivelse) {
@@ -53,20 +54,36 @@ public class TVSerie {
         return utgivelse;
     }
 
+    //(Oppgave 2.5)
     public double getGjennomsnittligSpilletid() {
         return gjennomsnittligSpilletid;
     }
 
+    public int getAntallSesonger() {
+        return antallSesonger;
+    }
+
     //Metoder
+    //(Oppgave 2.3)
     @Override
     public String toString() {
         return "Title: " + name + "\nDescription: " + beskrivelse + "\n" + episoder + "\nRelease date: " + utgivelse;
     }
 
+    //(Oppgave 2.1 og 2.7)
     public void leggTilEpisode(Episoder episoder) {
-        this.episoder.add(episoder);
+        int sesong = episoder.getSesongNr();
+        int sjekk = antallSesonger + 1;
+        if (sjekk >= sesong){
+            this.episoder.add(episoder);
+            this.antallSesonger = sesong;
+        }
+        else {
+            System.out.println("ERROR! Du kan ikke legge til denne episoden");
+        }
     }
 
+    //(Oppgave 2.4)
     public ArrayList<Episoder> hentEpisoderISesong(int sesong) {
         ArrayList <Episoder> riktigSesong = new ArrayList<>();
         for (int v = 0; v < episoder.size(); v++) {
@@ -77,7 +94,7 @@ public class TVSerie {
         return riktigSesong;
     }
 
-    // TODO: 30.01.2023 Fiks denne
+    //(Oppgave 2.5)
     public double oppdaterGjennomsnitt(int spilletid) {
         double gjennomsnitt = spilletid;
         for (Episoder episoder : episoder) {

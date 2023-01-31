@@ -59,6 +59,7 @@ class Episoder{
         System.out.println("\nSeason: " + getSesongNr() + " Episode: " + getEpisodeNr() + "\nEpisode name: " + getTitle() + "\nThis episode runs for " + getSpilletid() + " minutes");
     }
 
+    //(Oppgave 2.3)
     @Override
     public String toString() {
         return "Sesong" + sesongNr + " Episode" + episodeNr + " " + title + "er " + spilletid + " minutter lang";
