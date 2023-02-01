@@ -73,11 +73,10 @@ public class TVSerie {
     public void leggTilEpisode(Episoder episoder) {
         int sesong = episoder.getSesongNr();
         int sjekk = antallSesonger + 1;
-        int spilletid = episoder.getSpilletid();
         if (sjekk >= sesong){
             this.episoder.add(episoder);
             this.antallSesonger = sesong;
-            oppdaterGjennomsnitt(spilletid);
+            oppdaterGjennomsnitt();
         }
         else {
             System.out.println("ERROR! Du kan ikke legge til denne episoden");
@@ -96,11 +95,10 @@ public class TVSerie {
     }
 
     //(Oppgave 2.5)
-    private double oppdaterGjennomsnitt(int spilletid) {
-        double gjennomsnitt = spilletid;
+    private double oppdaterGjennomsnitt() {
+        double gjennomsnitt = 0;
         for (Episoder episoder : episoder) {
-            int spilletid2 = episoder.getSpilletid();
-            gjennomsnitt += spilletid2;
+            gjennomsnitt += episoder.getSpilletid();
         }
         gjennomsnittligSpilletid = gjennomsnitt/episoder.size();
         return gjennomsnittligSpilletid;
