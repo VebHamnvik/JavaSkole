@@ -47,14 +47,12 @@ public class Main {
             int runTime = (int)randomNumber;
             Episoder test = new Episoder("'EpisodeNavn'", i, 1, runTime);
             criticalRole.leggTilEpisode(test);
-            criticalRole.oppdaterGjennomsnitt(runTime);
         }
         for (int i = 1; i <= 20; i++) {
             double randomNumber = 20 + (int)(Math.random() * ((30 - 20) + 1));
             int runTime = (int)randomNumber;
             Episoder test = new Episoder("'EpisodeNavn'", i, 2, runTime);
             criticalRole.leggTilEpisode(test);
-            criticalRole.oppdaterGjennomsnitt(runTime);
 
         }
         for (int i = 1; i <= 20; i++) {
@@ -62,37 +60,25 @@ public class Main {
             int runTime = (int)randomNumber;
             Episoder test = new Episoder("'EpisodeNavn'", i, 3, runTime);
             criticalRole.leggTilEpisode(test);
-            criticalRole.oppdaterGjennomsnitt(runTime);
         }
         for (int i = 1; i <= 20; i++) {
             double randomNumber = 20 + (int)(Math.random() * ((30 - 20) + 1));
             int runTime = (int)randomNumber;
             Episoder test = new Episoder("'EpisodeNavn'", i, 4, runTime);
             criticalRole.leggTilEpisode(test);
-            criticalRole.oppdaterGjennomsnitt(runTime);
         }
         for (int i = 1; i <= 20; i++) {
             double randomNumber = 20 + (int)(Math.random() * ((30 - 20) + 1));
             int runTime = (int)randomNumber;
             Episoder test = new Episoder("'EpisodeNavn'", i, 5, runTime);
             criticalRole.leggTilEpisode(test);
-            criticalRole.oppdaterGjennomsnitt(runTime);
         }
 
         System.out.println(criticalRole);
+        System.out.println(criticalRole.getGjennomsnittligSpilletid());
         System.out.println("\n**********Mellomrom**********");
         //Tester om metoden klarer å bare printe ut episodene i riktig sesong
         System.out.println(criticalRole.hentEpisoderISesong(4));
-
-
-
-        System.out.println("\n**********Mellomrom**********");
-
-
-
-
-
-
     }
 
 }

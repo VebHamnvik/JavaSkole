@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class TVSerie {
     private String name;
     private String beskrivelse;
-    //private Episoder episoder;
     private ArrayList<Episoder> episoder = new ArrayList<>();
     private LocalDate utgivelse;
     private double gjennomsnittligSpilletid;
@@ -74,9 +73,12 @@ public class TVSerie {
     public void leggTilEpisode(Episoder episoder) {
         int sesong = episoder.getSesongNr();
         int sjekk = antallSesonger + 1;
+        // TODO: 01.02.2023 Spørre om forskjellen på å bruke getAntallSesonger og bare bruke variablen 
+        int spilletid = episoder.getSpilletid();
         if (sjekk >= sesong){
             this.episoder.add(episoder);
             this.antallSesonger = sesong;
+            oppdaterGjennomsnitt(spilletid);
         }
         else {
             System.out.println("ERROR! Du kan ikke legge til denne episoden");
@@ -95,7 +97,7 @@ public class TVSerie {
     }
 
     //(Oppgave 2.5)
-    public double oppdaterGjennomsnitt(int spilletid) {
+    private double oppdaterGjennomsnitt(int spilletid) {
         double gjennomsnitt = spilletid;
         for (Episoder episoder : episoder) {
             int spilletid2 = episoder.getSpilletid();
