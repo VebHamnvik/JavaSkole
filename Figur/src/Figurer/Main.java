@@ -17,7 +17,7 @@ public class Main {
         System.out.println(kvadrat1.toString() + "\t\tAreal: " + kvadrat1.areal() + "\t\tOmkrets: " + kvadrat1.omkrets());
 
         System.out.println("\n************Hvem er størst?************");
-        if (erStorre(rektangel1, sirkel1))
+        if (Figurer.erStorre(rektangel1, sirkel1))
             System.out.println(rektangel1 + " er størst");
         else
             System.out.println(sirkel1 + " er størst");
@@ -38,9 +38,5 @@ public class Main {
         }
 
         
-    }
-
-    public static boolean erStorre(Figurer figur1, Figurer figur2) {
-        return figur1.areal() > figur2.areal();
     }
 }
