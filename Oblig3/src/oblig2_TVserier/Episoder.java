@@ -31,7 +31,6 @@ class Episoder extends Produksjon{
 
 
     //Metoder
-    //(Oppgave 2.3)
     @Override
     public String toString() {
         return "Sesong" + sesongNr + " Episode" + episodeNr + " " + getTitle() + "er " + getSpilletid() + " minutter lang";

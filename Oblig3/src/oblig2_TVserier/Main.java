@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        //Lager et TVSerie objekt (Oppgave 2.1)
+        //Lager et TVSerie objekt
         TVSerie criticalRole = new TVSerie("Critical Role", "En strømmet d&d serie",LocalDate.of(2015, 3, 12));
 
         //Kan lage og legge til episoder enkeltvis (oppgave 2.2)

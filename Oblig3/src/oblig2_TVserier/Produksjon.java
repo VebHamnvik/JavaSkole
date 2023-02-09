@@ -2,7 +2,7 @@ package oblig2_TVserier;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-//Oppgave 2.1
+//Oppgave 2.1 og 2.3
 public class Produksjon {
     private String title;
     private int spilletid;
