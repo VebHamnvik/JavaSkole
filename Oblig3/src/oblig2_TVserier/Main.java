@@ -9,7 +9,7 @@ public class Main {
         //Lager et TVSerie objekt
         TVSerie criticalRole = new TVSerie("Critical Role", "En strømmet d&d serie",LocalDate.of(2015, 3, 12));
 
-        //Kan lage og legge til episoder enkeltvis (oppgave 2.2)
+        //Kan lage og legge til episoder enkeltvis
         /*Episoder test2 = new Episoder("tittel", 2, 1, 75);
         Episoder test3 = new Episoder("tittel", 3, 1, 75);
         Episoder test4 = new Episoder("tittel", 4, 1, 75);
@@ -19,7 +19,7 @@ public class Main {
          */
         //Skriver ut informasjon om serien og episoden
 
-        //Testing for å se om nye funksjonen i leggTilEpisode funker, (oppgave 2.7 og 2.8)
+        //Testing for å se om nye funksjonen i leggTilEpisode funker
         /* System.out.println(criticalRole);
         System.out.println("\n**********Mellomrom**********");
         Episoder test = new Episoder("Første Sesong", 1, 1, 35);
@@ -146,6 +146,8 @@ public class Main {
         System.out.println();
         System.out.println(simpson.hentRolleBesetning());
 
+        System.out.println("\n**********Telle episoder**********");
+        System.out.println(simpson.countEpisodes());
 
 
 

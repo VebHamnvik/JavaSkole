@@ -70,4 +70,10 @@ public class Produksjon {
     public void leggTilMangeRoller(ArrayList<Rolle> flereRoller) {
         roller.addAll(flereRoller);
     }
+
+
+
+
+        //simpsons.countEpisoder(Homer);
+        //"The Actor: Dan Castellaneta has played in x episodes"
 }

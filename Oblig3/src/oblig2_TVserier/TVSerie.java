@@ -1,6 +1,9 @@
 package oblig2_TVserier;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TVSerie {
     private String name;
@@ -103,16 +106,52 @@ public class TVSerie {
         return gjennomsnittligSpilletid;
     }
 
-    //Oppgave 2.7
+    //Oppgave 2.7 og Bonus 1
     public ArrayList<Rolle> hentRolleBesetning() {
         ArrayList<Rolle> rolleBesetning = new ArrayList<>();
+        //Bonus - Lager et tomt set fordi det ikke tillater duplikater
+        Set <Rolle> ikkeDuplikater = new HashSet<>();
         //Lager en ny tom liste
         for (Episoder episoder : episoder) {
-            rolleBesetning.addAll(episoder.getRoller());
+            ikkeDuplikater.addAll(episoder.getRoller());
+            //Looper gjennom alle episodene og legger til alle unike roller inn i settet
             //Looper gjennom alle episodene i Tvserien og tar ut rollene i de og legger de til i den nye tomme listen
         }
+        //Legger hele settet inn i den tomme listen og returnere den
+        rolleBesetning.addAll(ikkeDuplikater);
         return rolleBesetning;
     }
+
+    //Bonus 2
+    public HashMap<Rolle,Integer> countEpisodes() {
+        //Hashmap er litt som dictionary fra Python. Nøkkel:verdi par, der alle nøklene er unike
+        HashMap<Rolle, Integer> rolleBesetning = new HashMap<>();
+        //Lager et HashMap som holder på rollen og et tall som representerer antallet episoder den rollen spiller i
+        for (Episoder enEpisode: episoder) {
+            //Looper gjennom alle episodene i TVSerien
+            for (Rolle enRolle : enEpisode.getRoller()) {
+                //Looper gjennom alle rollene som er i den episoden
+                if (rolleBesetning.containsKey(enRolle)) {
+                    //containsKeys er en metode for å sjekke om nøkkelen er i mapet eller ikke.
+                    //Hvis den nøkkelen finnes i mapet, så henter den ut den interger verdien som er satt og endrer den
+                    Integer antallEpisoder = rolleBesetning.get(enRolle);
+                    //Henter ut verdien til enRolle og lagrer det i antallEpisoder
+                    rolleBesetning.replace(enRolle, ++antallEpisoder);
+                    //Erstatter verdien med det som var fra før pluss 1
+                }
+                else {
+                    // Hvis rollen ikke er i mapet fra før, legges den til og setter antallet episoder spilt til 1
+                    rolleBesetning.put(enRolle, 1);
+                }
+            }}
+        return rolleBesetning;
+        //Fikk hjelp av DjonRussell
+        //https://www.w3schools.com/java/java_hashmap.asp
+        //https://www.geeksforgeeks.org/hashmap-containskey-method-in-java/
+        //https://stackoverflow.com/questions/8923273/how-can-i-have-a-hashmap-with-unique-keys-in-java
+
+    }
+
 
 }
 

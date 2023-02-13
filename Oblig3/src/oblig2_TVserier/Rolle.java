@@ -12,6 +12,10 @@ public class Rolle {
         this.rolleEtternavn = rolleEtternavn;
     }
 
+    public Person getSkuespiller() {
+        return skuespiller;
+    }
+
     @Override
     public String toString() {
         return "'" + rolleFornavn + " " + rolleEtternavn + "'" + " by " + skuespiller;

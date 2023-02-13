@@ -1,0 +1,54 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Produksjon <|-- Episoder
+Produksjon <|-- Film
+Person <-- Rolle
+TVSerie o-- Episoder
+Produksjon o-- Rolle
+
+
+class TVSerie {
+    - name: String
+    - beskrivelse: String
+    - episoder: ArrayList<Episoder>
+    - utgivelse: LocalDate
+    - gjennomsnittligSpilletid: double
+    - antallSesonger: int
+    + leggTilEpisode(episoder: Episoder): void
+    + hentEpisoderISesong(sesong: int): ArrayList<Episoder>
+    - oppdatereGjennomsnitt(): double
+    + hentRolleBesetning(): ArrayList<Rolle>
+}
+
+class Produksjon {
+    - title: String
+    - spilletid: int
+    - utgivelse: LocalDate
+    - beskrivelse: String
+    - regissor: Person
+    - roller: ArrayList<Rolle>
+    + leggTilRolle(enRolle: Rolle): void
+    + leggTilMangeRoller(ArrayList<Rolle>): void
+}
+
+class Person {
+    - alder: int
+    - sex: String
+    - name: String
+}
+
+class Episoder {
+    episodeNr: int
+    sesongNr: int
+
+}
+
+class Rolle {
+   - rolleFornavn: String
+   - rolleEtternavn: String
+   - skuespiller: Person
+}
+
+
+@enduml
