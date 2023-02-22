@@ -1,6 +1,7 @@
 package oblig2_TVserier;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 
@@ -149,7 +150,29 @@ public class Main {
         System.out.println("\n**********Telle episoder**********");
         System.out.println(simpson.countEpisodes());
 
+        System.out.println(criticalRole.compareTo(simpson));
+        ArrayList<Episoder> testSortering = new ArrayList<>();
+        Episoder alfabetisk = new Episoder("kul episode", 14, 1, 28, LocalDate.of(2010, 4, 7), "Beskrivelse av episoden");
+        Episoder testing = new Episoder("råkul episode", 1, 1, 34, LocalDate.of(2010, 4, 8), "Beskrivelse av episoden");
+        Episoder av = new Episoder("superkul episode", 17, 1, 23, LocalDate.of(2010, 4, 9), "Beskrivelse av episoden");
+        Episoder sortert = new Episoder("dritkul episode", 6, 1, 25, LocalDate.of(2010, 4, 10), "Beskrivelse av episoden");
+        Episoder liste = new Episoder("veldig kul episode", 12, 1, 26, LocalDate.of(2010, 4, 11), "Beskrivelse av episoden");
 
+        testSortering.add(alfabetisk);
+        testSortering.add(testing);
+        testSortering.add(av);
+        testSortering.add(sortert);
+        testSortering.add(liste);
+
+        System.out.println("\n**********Usortert**********");
+        System.out.println(testSortering);
+
+        Collections.sort(testSortering, Collections.reverseOrder());
+
+        System.out.println("\n**********Sortert**********");
+        System.out.println(testSortering);
+
+        serie.compa
 
 
     }

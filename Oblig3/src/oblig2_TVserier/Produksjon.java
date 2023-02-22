@@ -3,9 +3,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 //Oppgave 2.1 og 2.3
-public class Produksjon {
+abstract class Produksjon {
     private String title;
-    private int spilletid;
+    protected int spilletid;
     private LocalDate utgivelse;
     private String beskrivelse;
     private Person regissor;
@@ -59,6 +59,7 @@ public class Produksjon {
         this.regissor = regissor;
     }
 
+    // TODO: 22.02.2023 Trenger jeg endre metodene? Er det nok å bare skrive abstract og si seg ferdig? 
     public ArrayList<Rolle> getRoller() {
         return roller;
     }
@@ -71,9 +72,4 @@ public class Produksjon {
         roller.addAll(flereRoller);
     }
 
-
-
-
-        //simpsons.countEpisoder(Homer);
-        //"The Actor: Dan Castellaneta has played in x episodes"
 }

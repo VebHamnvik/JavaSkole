@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TVSerie {
+public class TVSerie implements Comparable<TVSerie>{
     private String name;
     private String beskrivelse;
     private ArrayList<Episoder> episoder;
@@ -152,6 +152,19 @@ public class TVSerie {
 
     }
 
+
+    @Override
+    public int compareTo(TVSerie a) {
+        if (episoder.size() > a.getEpisoder().size()) {
+            return 1;
+        }
+        else if (episoder.size() < a.getEpisoder().size()) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
+    }
 
 }
 
