@@ -1,8 +1,7 @@
 package oblig2_TVserier;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
-class Episoder extends Produksjon implements Comparable<Episoder>{
+class Episoder extends Produksjon{
     private int episodeNr;
     private int sesongNr;
 
@@ -11,6 +10,7 @@ class Episoder extends Produksjon implements Comparable<Episoder>{
         super(title, spilletid, utgivelse, beskrivelse);
         this.episodeNr = episodeNr;
         this.sesongNr = sesongNr;
+
     }
 
     public void setEpisodeNr(int episodeNr) {
@@ -34,30 +34,5 @@ class Episoder extends Produksjon implements Comparable<Episoder>{
     @Override
     public String toString() {
         return "Sesong" + sesongNr + " Episode" + episodeNr + " " + getTitle() + "er " + getSpilletid() + " minutter lang";
-    }
-
-    // TODO: 22.02.2023 Trenger jeg disse? 
-    @Override
-    public void leggTilRolle(Rolle enRolle) {
-        super.leggTilRolle(enRolle);
-    }
-
-    @Override
-    public void leggTilMangeRoller(ArrayList<Rolle> flereRoller) {
-        super.leggTilMangeRoller(flereRoller);
-    }
-
-    @Override
-    public int compareTo(Episoder o) {
-        if (this.spilletid > o.getSpilletid()) {
-            return 1;
-        } else if (this.spilletid < o.getSpilletid()) {
-            return -1;
-        }
-        else {
-            return 0;
-        }
-
-
     }
 }
