@@ -51,7 +51,7 @@ public class Application {
         app.get("api/tvserie", new Handler() {
             @Override
             public void handle(@NotNull Context ctx) {
-                ctx.json(listeSerier);
+                tvSerieController.getAlleSerier(ctx);
             }
         });
 

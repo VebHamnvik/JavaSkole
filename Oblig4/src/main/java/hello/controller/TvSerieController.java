@@ -15,4 +15,8 @@ public class TvSerieController {
 
         ctx.json(tvSerieRepository.getEnSerie(tvSerieNavn));
     }
+
+    public void getAlleSerier(Context ctx) {
+        ctx.json(tvSerieRepository.getAlleSerier());
+    }
 }
