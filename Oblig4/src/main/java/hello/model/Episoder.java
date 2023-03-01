@@ -6,8 +6,8 @@ public class Episoder extends Produksjon implements Comparable<Episoder>{
     private int sesongNummer;
 
 
-    public Episoder(String title, int episodeNummer, int sesongNummer, int spilletid, LocalDate utgivelse, String beskrivelse) {
-        super(title, spilletid, utgivelse, beskrivelse);
+    public Episoder(String title, int episodeNummer, int sesongNummer, int spilletid, LocalDate utgivelse, String beskrivelse, String lenke) {
+        super(title, spilletid, utgivelse, beskrivelse, lenke);
         this.episodeNummer = episodeNummer;
         this.sesongNummer = sesongNummer;
     }

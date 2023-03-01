@@ -22,12 +22,13 @@ public class Application {
         jsonMapper.registerModule(new JavaTimeModule());
 
         //Oppgave 2.3
+        /*
         app.get("/", new Handler() {
             @Override
             public void handle(@NotNull Context context) throws Exception {
                 context.result("Hello, world!");
             }
-        });
+        });*/
 
         //Oppgave 2.5
         TVSerieDataRepository listeSerier = new TVSerieDataRepository();
@@ -38,15 +39,22 @@ public class Application {
         System.out.println(listeSerier.getAlleSerier());
         System.out.println("\n********** En spesifikk serie **********");
         System.out.println(listeSerier.getEnSerie("Band of Brothers"));
-        System.out.println("\n********** Teste ERROR **********");
 
         //Oppgave 2.6
         //VueComponent/frontend
+        app.get("/", new VueComponent("hello-world"));
         app.get("/tvserie", new VueComponent("tvserie-overview"));
         app.get("/tvserie/{tvserie-id}/sesong/{sesong-nr}", new VueComponent("tvserie-detail"));
         app.get("/tvserie/{tvserie-id}/sesong/{sesong-nr}/episode/{episode-nr}", new VueComponent("episode-detail"));
 
         //API
+        app.get("api/", new Handler() {
+            @Override
+            public void handle(@NotNull Context cxt) {
+                cxt.result("Hello, world!");
+            }
+        });
+
         //Henter alle tvserier
         app.get("api/tvserie", new Handler() {
             @Override

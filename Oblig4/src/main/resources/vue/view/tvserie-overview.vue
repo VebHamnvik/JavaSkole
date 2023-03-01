@@ -88,11 +88,12 @@ TvSerie:
         box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.25);
     }
 
-    img.cover-image-frontpage {
-        height: auto;
-        width: 100%;
+    img.cover-image {
+        width: auto;
         padding-bottom: 20px;
-        max-height: 280px;
+        height: 250px;
+        border-radius: 8px;
+
     }
 
 </style>

@@ -10,13 +10,15 @@ abstract class Produksjon {
     private String beskrivelse;
     private Person regissor;
     private ArrayList<Rolle> roller;
+    private String bildeUrl;
 
-    public Produksjon(String tittel, int spilletid, LocalDate utgivelsesdato, String beskrivelse) {
+    public Produksjon(String tittel, int spilletid, LocalDate utgivelsesdato, String beskrivelse, String lenke) {
         this.tittel = tittel;
         this.spilletid = spilletid;
         this.utgivelsesdato = utgivelsesdato;
         this.beskrivelse = beskrivelse;
         this.roller = new ArrayList<>();
+        this.bildeUrl = lenke;
     }
 
     public String getTittel() {
@@ -61,6 +63,10 @@ abstract class Produksjon {
 
     public ArrayList<Rolle> getRoller() {
         return roller;
+    }
+
+    public String getBildeUrl() {
+        return bildeUrl;
     }
 
     public void leggTilRolle(Rolle enRolle) {

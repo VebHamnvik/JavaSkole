@@ -3,8 +3,8 @@ import java.time.LocalDate;
 
 public class Film extends Produksjon{
 
-    public Film(String title, int spilletid, LocalDate utgivelse, String beskrivelse) {
-        super(title, spilletid, utgivelse, beskrivelse);
+    public Film(String title, int spilletid, LocalDate utgivelse, String beskrivelse, String lenke) {
+        super(title, spilletid, utgivelse, beskrivelse, lenke);
     }
 
     @Override

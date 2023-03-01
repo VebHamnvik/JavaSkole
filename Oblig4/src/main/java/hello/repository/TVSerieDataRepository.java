@@ -5,6 +5,7 @@ import hello.model.Person;
 import hello.model.TVSerie;
 import hello.repository.TVSerieRepository;
 
+import java.net.MalformedURLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -15,10 +16,12 @@ public class TVSerieDataRepository implements TVSerieRepository {
     public TVSerieDataRepository() {
         this.serier = new ArrayList<>();
 
-        TVSerie cloneWars = new TVSerie("Clone Wars", "En krig i rommet", LocalDate.of(2008, 10, 8));
-        TVSerie lotr = new TVSerie("Ringenes Herre", "En krig i i Midgard", LocalDate.of(2022, 9, 1));
-        TVSerie bandBrothers = new TVSerie("Band of Brothers", "En krig i Europa", LocalDate.of(2001, 9, 9));
-        TVSerie witcher = new TVSerie("Witcher", "En krig mot monstre og mennesker", LocalDate.of(2019, 12, 19));
+        // TODO: 01.03.2023 Legge til bildeUrl i instansieringen av objektene
+
+        TVSerie cloneWars = new TVSerie("Clone Wars", "En krig i rommet", LocalDate.of(2008, 10, 8), "https://images.thedirect.com/media/article_full/star-wars-celebrates-the-clone-wars-official-watch-order-chronological_.jpg");
+        TVSerie lotr = new TVSerie("Ringenes Herre", "En krig i i Midgard", LocalDate.of(2022, 9, 1), "https://premium.vgc.no/v2/images/34968bc5-6839-4148-9c5a-ec63e66610a9?fit=crop&format=auto&h=1157&w=2019&s=a8a19d5f68775aea9ad5e62dbd80515c59fe767d");
+        TVSerie bandBrothers = new TVSerie("Band of Brothers", "En krig i Europa", LocalDate.of(2001, 9, 9), "https://m.media-amazon.com/images/M/MV5BMzFhMDQ5MTItMjllMy00YmM2LTk3NmYtY2I3MTIxMzAyNDFlXkEyXkFqcGdeQW1pYnJ5YW50._V1_.jpg");
+        TVSerie witcher = new TVSerie("Witcher", "En krig mot monstre og mennesker", LocalDate.of(2019, 12, 19), "https://flxt.tmsimg.com/assets/p17580186_i_h10_ab.jpg");
 
         Person peterJackson = new Person("Peter Jackson");
         Person jamesCameron = new Person("James Cameron");
@@ -29,9 +32,10 @@ public class TVSerieDataRepository implements TVSerieRepository {
             for (int i = 1; i <= 20; i++) {
                 double randomNumber = 20 + (int) (Math.random() * ((30 - 20) + 1));
                 int runTime = (int) randomNumber;
-                Episoder test = new Episoder("'Episodenavn'", i, j, runTime, LocalDate.of(2000, 5, 5), "Beskrivende tekst om Clone Wars episoden");
+                Episoder test = new Episoder("'Episodenavn'", i, j, runTime, LocalDate.of(2000, 5, 5), "Beskrivende tekst om Clone Wars episoden", "https://m.media-amazon.com/images/M/MV5BNWQ2MWYyMmItMTRjMS00YWQyLThiYjEtZTI0MTI1OGMzZjJmXkEyXkFqcGdeQW1yb2Njbw@@._V1_.jpg");
                 test.setRegissor(peterJackson);
                 cloneWars.leggTilEpisode(test);
+                //
             }
         }
 
@@ -39,9 +43,10 @@ public class TVSerieDataRepository implements TVSerieRepository {
             for (int i = 1; i <= 20; i++) {
                 double randomNumber = 20 + (int) (Math.random() * ((30 - 20) + 1));
                 int runTime = (int) randomNumber;
-                Episoder test = new Episoder("'Episodenavn'", i, j, runTime, LocalDate.of(2000, 5, 5), "Beskrivende tekst om Ringenes Herre episoden");
+                Episoder test = new Episoder("'Episodenavn'", i, j, runTime, LocalDate.of(2000, 5, 5), "Beskrivende tekst om Ringenes Herre episoden", "https://www.cdn.tv2.no/images/9473751.jpg?imageId=9473751&width=1060&height=597");
                 test.setRegissor(jamesCameron);
                 lotr.leggTilEpisode(test);
+                //https://www.cdn.tv2.no/images/9473751.jpg?imageId=9473751&width=1060&height=597
             }
         }
 
@@ -49,9 +54,10 @@ public class TVSerieDataRepository implements TVSerieRepository {
             for (int i = 1; i <= 20; i++) {
                 double randomNumber = 20 + (int) (Math.random() * ((30 - 20) + 1));
                 int runTime = (int) randomNumber;
-                Episoder test = new Episoder("'Episodenavn'", i, j, runTime, LocalDate.of(2000, 5, 5), "Beskrivende tekst om Band of Brothers episoden");
+                Episoder test = new Episoder("'Episodenavn'", i, j, runTime, LocalDate.of(2000, 5, 5), "Beskrivende tekst om Band of Brothers episoden", "https://cloudfront-eu-central-1.images.arcpublishing.com/mentormedier/W3BWILDHKNGQJJQV7PVEDNCPO4.jpg");
                 test.setRegissor(joeRusso);
                 bandBrothers.leggTilEpisode(test);
+                //https://cloudfront-eu-central-1.images.arcpublishing.com/mentormedier/W3BWILDHKNGQJJQV7PVEDNCPO4.jpg
             }
         }
 
@@ -59,12 +65,12 @@ public class TVSerieDataRepository implements TVSerieRepository {
             for (int i = 1; i <= 20; i++) {
                 double randomNumber = 20 + (int) (Math.random() * ((30 - 20) + 1));
                 int runTime = (int) randomNumber;
-                Episoder test = new Episoder("'Episodenavn'", i, j, runTime, LocalDate.of(2000, 5, 5), "Beskrivende tekst om Witcher episoden");
+                Episoder test = new Episoder("'Episodenavn'", i, j, runTime, LocalDate.of(2000, 5, 5), "Beskrivende tekst om Witcher episoden", "https://www.pcgamesn.com/wp-content/sites/pcgamesn/2019/04/netflix-witcher.jpg");
                 test.setRegissor(jossWhedon);
                 witcher.leggTilEpisode(test);
+                //https://www.pcgamesn.com/wp-content/sites/pcgamesn/2019/04/netflix-witcher.jpg
             }
         }
-
 
         serier.add(cloneWars);
         serier.add(lotr);

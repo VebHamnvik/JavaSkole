@@ -1,4 +1,9 @@
 package hello.model;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,13 +17,26 @@ public class TVSerie implements Comparable<TVSerie>{
     private LocalDate utgivelse;
     private double gjennomsnittligSpilletid;
     private int antallSesonger;
+    private String bildeUrl;
+    // TODO: 01.03.2023 private x bildeUrl; 
 
     //Konstruktør
-    public TVSerie(String tittel, String beskrivelse, LocalDate utgivelse) {
+    public TVSerie(String tittel, String beskrivelse, LocalDate utgivelse, String lenke) {
         this.tittel = tittel;
         this.beskrivelse = beskrivelse;
         this.episoder = new ArrayList<>();
         this.utgivelse = utgivelse;
+        this.bildeUrl = lenke;
+
+        /*
+        try{
+            this.bildeUrl = ImageIO.read(new URL(lenke));
+        } catch(Exception e){e.printStackTrace();}
+        //https://stackoverflow.com/questions/29549366/how-to-add-an-image-to-an-object-in-java
+        */
+
+
+        // TODO: 01.03.2023 Legge til bildeUrl i konstruktør 
     }
 
     //Set
@@ -38,6 +56,9 @@ public class TVSerie implements Comparable<TVSerie>{
         this.utgivelse = utgivelse;
     }
 
+    public String getBildeUrl() {
+        return bildeUrl;
+    }
 
     //Get
     public String getTittel() {
