@@ -3,21 +3,25 @@ package hello.model;
 public class Person {
     private int alder;
     private String sex;
-    private String fulltnavn;
+    private String fulltNavn;
 
-    public Person(int alder, String sex, String fulltnavn) {
+    public Person(int alder, String sex, String fulltNavn) {
         this.alder = alder;
         this.sex = sex;
-        this.fulltnavn = fulltnavn;
+        this.fulltNavn = fulltNavn;
     }
 
-    public Person(String fulltnavn) {
-        this.fulltnavn = fulltnavn;
+    public Person(String fulltNavn) {
+        this.fulltNavn = fulltNavn;
+    }
+
+    public String getFulltNavn() {
+        return fulltNavn;
     }
 
     @Override
     public String toString() {
-        return fulltnavn;
+        return fulltNavn;
     }
 
 

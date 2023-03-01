@@ -30,6 +30,7 @@ public class TVSerieDataRepository implements TVSerieRepository {
                 double randomNumber = 20 + (int) (Math.random() * ((30 - 20) + 1));
                 int runTime = (int) randomNumber;
                 Episoder test = new Episoder("'Episodenavn'", i, j, runTime, LocalDate.of(2000, 5, 5), "Beskrivende tekst om Clone Wars episoden");
+                test.setRegissor(peterJackson);
                 cloneWars.leggTilEpisode(test);
             }
         }
@@ -39,6 +40,7 @@ public class TVSerieDataRepository implements TVSerieRepository {
                 double randomNumber = 20 + (int) (Math.random() * ((30 - 20) + 1));
                 int runTime = (int) randomNumber;
                 Episoder test = new Episoder("'Episodenavn'", i, j, runTime, LocalDate.of(2000, 5, 5), "Beskrivende tekst om Ringenes Herre episoden");
+                test.setRegissor(jamesCameron);
                 lotr.leggTilEpisode(test);
             }
         }
@@ -48,7 +50,7 @@ public class TVSerieDataRepository implements TVSerieRepository {
                 double randomNumber = 20 + (int) (Math.random() * ((30 - 20) + 1));
                 int runTime = (int) randomNumber;
                 Episoder test = new Episoder("'Episodenavn'", i, j, runTime, LocalDate.of(2000, 5, 5), "Beskrivende tekst om Band of Brothers episoden");
-
+                test.setRegissor(joeRusso);
                 bandBrothers.leggTilEpisode(test);
             }
         }
@@ -58,6 +60,7 @@ public class TVSerieDataRepository implements TVSerieRepository {
                 double randomNumber = 20 + (int) (Math.random() * ((30 - 20) + 1));
                 int runTime = (int) randomNumber;
                 Episoder test = new Episoder("'Episodenavn'", i, j, runTime, LocalDate.of(2000, 5, 5), "Beskrivende tekst om Witcher episoden");
+                test.setRegissor(jossWhedon);
                 witcher.leggTilEpisode(test);
             }
         }
