@@ -7,7 +7,6 @@ import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import io.javalin.vue.VueComponent;
-import org.jetbrains.annotations.NotNull;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
@@ -39,26 +38,28 @@ public class Application {
         System.out.println(listeSerier.getAlleSerier());
         System.out.println("\n********** En spesifikk serie **********");
         System.out.println(listeSerier.getEnSerie("Band of Brothers"));
+        System.out.println("\n********** Alle seriene *********");
+        System.out.println("\n********** Alle seriene *********");
 
         //Oppgave 2.6
         //VueComponent/frontend
         app.get("/", new VueComponent("hello-world"));
-        app.get("/tvserie", new VueComponent("tvserie-overview"));
+
         app.get("/tvserie/{tvserie-id}/sesong/{sesong-nr}", new VueComponent("tvserie-detail"));
         app.get("/tvserie/{tvserie-id}/sesong/{sesong-nr}/episode/{episode-nr}", new VueComponent("episode-detail"));
 
         //API
         app.get("api/", new Handler() {
             @Override
-            public void handle(@NotNull Context cxt) {
+            public void handle(Context cxt) {
                 cxt.result("Hello, world!");
             }
         });
 
-        //Henter alle tvserier
+        app.get("/tvserie", new VueComponent("tvserie-overview"));
         app.get("api/tvserie", new Handler() {
             @Override
-            public void handle(@NotNull Context ctx) {
+            public void handle(Context ctx) {
                 tvSerieController.getAlleSerier(ctx);
             }
         });
@@ -67,7 +68,7 @@ public class Application {
         //F.eks. api/tvserie/Witcher
         app.get("api/tvserie/{tvserie-id}", new Handler() {
             @Override
-            public void handle(@NotNull Context ctx) {
+            public void handle(Context ctx) {
                 tvSerieController.getEnSerie(ctx);
             }
         });
@@ -75,7 +76,7 @@ public class Application {
         //Henter alle episoder i 1 sesong fra 1 tvserie
         app.get("api/tvserie/{tvserie-id}/sesong/{sesong-nr}/", new Handler() {
             @Override
-            public void handle(@NotNull Context ctx) {
+            public void handle(Context ctx) {
                 episodeController.getAlleEpisoderSesong(ctx);
             }
         });
@@ -83,10 +84,13 @@ public class Application {
         //Henter 1 episode fra 1 tvserie
         app.get("api/tvserie/{tvserie-id}/sesong/{sesong-nr}/episode/{episode-nr}", new Handler() {
             @Override
-            public void handle(@NotNull Context ctx) {
+            public void handle(Context ctx) {
                 episodeController.getEnEpisode(ctx);
             }
         });
+
+        //Oppgave 2.9
+
 
 
 

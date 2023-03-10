@@ -5,7 +5,6 @@ import hello.model.Person;
 import hello.model.TVSerie;
 import hello.repository.TVSerieRepository;
 
-import java.net.MalformedURLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -39,8 +38,8 @@ public class TVSerieDataRepository implements TVSerieRepository {
             }
         }
 
-        for (int j = 1; j <= 5; j++) {
-            for (int i = 1; i <= 20; i++) {
+        for (int j = 1; j <= 3; j++) {
+            for (int i = 1; i <= 25; i++) {
                 double randomNumber = 20 + (int) (Math.random() * ((30 - 20) + 1));
                 int runTime = (int) randomNumber;
                 Episoder test = new Episoder("'Episodenavn'", i, j, runTime, LocalDate.of(2000, 5, 5), "Beskrivende tekst om Ringenes Herre episoden", "https://www.cdn.tv2.no/images/9473751.jpg?imageId=9473751&width=1060&height=597");
@@ -50,8 +49,8 @@ public class TVSerieDataRepository implements TVSerieRepository {
             }
         }
 
-        for (int j = 1; j <= 5; j++) {
-            for (int i = 1; i <= 20; i++) {
+        for (int j = 1; j <= 4; j++) {
+            for (int i = 1; i <= 18; i++) {
                 double randomNumber = 20 + (int) (Math.random() * ((30 - 20) + 1));
                 int runTime = (int) randomNumber;
                 Episoder test = new Episoder("'Episodenavn'", i, j, runTime, LocalDate.of(2000, 5, 5), "Beskrivende tekst om Band of Brothers episoden", "https://cloudfront-eu-central-1.images.arcpublishing.com/mentormedier/W3BWILDHKNGQJJQV7PVEDNCPO4.jpg");
@@ -61,8 +60,8 @@ public class TVSerieDataRepository implements TVSerieRepository {
             }
         }
 
-        for (int j = 1; j <= 5; j++) {
-            for (int i = 1; i <= 20; i++) {
+        for (int j = 1; j <= 6; j++) {
+            for (int i = 1; i <= 22; i++) {
                 double randomNumber = 20 + (int) (Math.random() * ((30 - 20) + 1));
                 int runTime = (int) randomNumber;
                 Episoder test = new Episoder("'Episodenavn'", i, j, runTime, LocalDate.of(2000, 5, 5), "Beskrivende tekst om Witcher episoden", "https://www.pcgamesn.com/wp-content/sites/pcgamesn/2019/04/netflix-witcher.jpg");
@@ -76,6 +75,9 @@ public class TVSerieDataRepository implements TVSerieRepository {
         serier.add(lotr);
         serier.add(bandBrothers);
         serier.add(witcher);
+
+        System.out.println(cloneWars.compareTo(witcher));
+
     }
 
 
