@@ -1,0 +1,23 @@
+package hello.model;
+
+//Oppgave 2.5
+public class Rolle {
+    private String rolleFornavn;
+    private String rolleEtternavn;
+    private Person skuespiller;
+
+    public Rolle (String rolleFornavn, String rolleEtternavn, String name) {
+        this.skuespiller = new Person(name);
+        this.rolleFornavn = rolleFornavn;
+        this.rolleEtternavn = rolleEtternavn;
+    }
+
+    public Person getSkuespiller() {
+        return skuespiller;
+    }
+
+    @Override
+    public String toString() {
+        return "'" + rolleFornavn + " " + rolleEtternavn + "'" + " by " + skuespiller;
+    }
+}
