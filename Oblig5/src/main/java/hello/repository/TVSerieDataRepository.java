@@ -8,7 +8,7 @@ import hello.repository.TVSerieRepository;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-//Oppgave 2.5
+
 public class TVSerieDataRepository implements TVSerieRepository {
     private ArrayList<TVSerie> serier;
 

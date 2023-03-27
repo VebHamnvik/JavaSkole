@@ -2,46 +2,28 @@ package hello;
 
 import hello.controller.EpisodeController;
 import hello.controller.TvSerieController;
+import hello.repository.TVSerieCSVRepository;
 import hello.repository.TVSerieDataRepository;
+import hello.repository.TVSerieJSONRepository;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import io.javalin.vue.VueComponent;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 
 public class Application {
     public static void main(String[] args) {
         Javalin app = Javalin.create(config -> {
             config.staticFiles.enableWebjars();
             config.vue.vueAppName = "app";
-        }).start(7070);
+        }).start(8000);
 
-        JsonMapper jsonMapper = new JsonMapper();
-        jsonMapper.registerModule(new JavaTimeModule());
 
-        //Oppgave 2.3
-        /*
-        app.get("/", new Handler() {
-            @Override
-            public void handle(@NotNull Context context) throws Exception {
-                context.result("Hello, world!");
-            }
-        });*/
+        TVSerieJSONRepository jsonData = new TVSerieJSONRepository("tvshows_10.json");
+        TVSerieCSVRepository csvData = new TVSerieCSVRepository("tvshows_10.csv");
+        TvSerieController tvSerieController = new TvSerieController(csvData);
+        EpisodeController episodeController = new EpisodeController(csvData);
 
-        //Oppgave 2.5
-        TVSerieDataRepository listeSerier = new TVSerieDataRepository();
-        TvSerieController tvSerieController = new TvSerieController(listeSerier);
-        EpisodeController episodeController = new EpisodeController(listeSerier);
-
-        System.out.println("\n********** Alle seriene *********");
-        System.out.println(listeSerier.getAlleSerier());
-        System.out.println("\n********** En spesifikk serie **********");
-        System.out.println(listeSerier.getEnSerie("Band of Brothers"));
-        System.out.println("\n********** Alle seriene *********");
-        System.out.println("\n********** Alle seriene *********");
-
-        //Oppgave 2.6
         //VueComponent/frontend
         app.get("/", new VueComponent("hello-world"));
 
@@ -89,7 +71,7 @@ public class Application {
             }
         });
 
-        //Oppgave 2.9
+
 
 
 

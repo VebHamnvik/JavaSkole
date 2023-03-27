@@ -6,6 +6,8 @@ public class Episoder extends Produksjon implements Comparable<Episoder>{
     private int sesongNummer;
 
 
+    public Episoder() {}
+
     public Episoder(String title, int episodeNummer, int sesongNummer, int spilletid, LocalDate utgivelse, String beskrivelse, String lenke) {
         super(title, spilletid, utgivelse, beskrivelse, lenke);
         this.episodeNummer = episodeNummer;
@@ -35,7 +37,6 @@ public class Episoder extends Produksjon implements Comparable<Episoder>{
         return "Sesong" + sesongNummer + " Episode" + episodeNummer + " " + getTittel() + "er " + getSpilletid() + " minutter lang";
     }
 
-    //Oppgave 2.2
     @Override
     public int compareTo(Episoder o) {
         if (this.spilletid > o.getSpilletid()) {

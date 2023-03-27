@@ -1,5 +1,7 @@
 package hello.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,17 +12,19 @@ public class TVSerie implements Comparable<TVSerie>{
     private String tittel;
     private String beskrivelse;
     private ArrayList<Episoder> episoder;
-    private LocalDate utgivelse;
+    private LocalDate utgivelsesdato;
     private double gjennomsnittligSpilletid;
     private int antallSesonger;
     private String bildeUrl;
 
+    public TVSerie() {}
+
     //Konstruktør
-    public TVSerie(String tittel, String beskrivelse, LocalDate utgivelse, String lenke) {
+    public TVSerie(String tittel, String beskrivelse, LocalDate utgivelsesdato, String lenke) {
         this.tittel = tittel;
         this.beskrivelse = beskrivelse;
         this.episoder = new ArrayList<>();
-        this.utgivelse = utgivelse;
+        this.utgivelsesdato = utgivelsesdato;
         this.bildeUrl = lenke;
 
     }
@@ -38,8 +42,8 @@ public class TVSerie implements Comparable<TVSerie>{
         this.episoder = episoder;
     }
 
-    public void setUtgivelse(LocalDate utgivelse) {
-        this.utgivelse = utgivelse;
+    public void setUtgivelsesdato(LocalDate utgivelsesdato) {
+        this.utgivelsesdato = utgivelsesdato;
     }
 
     public String getBildeUrl() {
@@ -59,11 +63,11 @@ public class TVSerie implements Comparable<TVSerie>{
         return episoder;
     }
 
-    public LocalDate getUtgivelse() {
-        return utgivelse;
+    public LocalDate getUtgivelsesdato() {
+        return utgivelsesdato;
     }
 
-
+    @JsonIgnore
     public double getGjennomsnittligSpilletid() {
         return gjennomsnittligSpilletid;
     }
@@ -72,11 +76,23 @@ public class TVSerie implements Comparable<TVSerie>{
         return antallSesonger;
     }
 
+    public void setGjennomsnittligSpilletid(double gjennomsnittligSpilletid) {
+        this.gjennomsnittligSpilletid = gjennomsnittligSpilletid;
+    }
+
+    public void setAntallSesonger(int antallSesonger) {
+        this.antallSesonger = antallSesonger;
+    }
+
+    public void setBildeUrl(String bildeUrl) {
+        this.bildeUrl = bildeUrl;
+    }
+
     //Metoder
 
     @Override
     public String toString() {
-        return "Title: " + tittel + "\nDescription: " + beskrivelse + "\n" + episoder + "\nRelease date: " + utgivelse;
+        return "Title: " + tittel + "\nDescription: " + beskrivelse + "\n" + episoder + "\nRelease date: " + utgivelsesdato;
     }
 
 
@@ -141,7 +157,6 @@ public class TVSerie implements Comparable<TVSerie>{
         return rolleBesetning;
     }
 
-    //Oppgave 2.2
     @Override
     public int compareTo(TVSerie a) {
         if (episoder.size() > a.getEpisoder().size()) {

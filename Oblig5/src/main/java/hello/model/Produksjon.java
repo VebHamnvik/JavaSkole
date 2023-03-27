@@ -1,4 +1,6 @@
 package hello.model;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -9,8 +11,12 @@ abstract class Produksjon {
     private LocalDate utgivelsesdato;
     private String beskrivelse;
     private Person regissor;
+
+    @JsonProperty ("rolleListe")
     private ArrayList<Rolle> roller;
     private String bildeUrl;
+
+    public Produksjon() {}
 
     public Produksjon(String tittel, int spilletid, LocalDate utgivelsesdato, String beskrivelse, String lenke) {
         this.tittel = tittel;
@@ -67,6 +73,14 @@ abstract class Produksjon {
 
     public String getBildeUrl() {
         return bildeUrl;
+    }
+
+    public void setRoller(ArrayList<Rolle> roller) {
+        this.roller = roller;
+    }
+
+    public void setBildeUrl(String bildeUrl) {
+        this.bildeUrl = bildeUrl;
     }
 
     public void leggTilRolle(Rolle enRolle) {

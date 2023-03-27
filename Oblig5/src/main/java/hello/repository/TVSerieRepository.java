@@ -5,7 +5,7 @@ import hello.model.TVSerie;
 
 import java.util.ArrayList;
 
-//Oppgave 2.5
+
 public interface TVSerieRepository{
     //Definerer metodene
     ArrayList<TVSerie> getAlleSerier();
