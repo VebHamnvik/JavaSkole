@@ -3,6 +3,7 @@ package hello.repository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import hello.model.Episoder;
+import hello.model.Person;
 import hello.model.TVSerie;
 
 import java.io.File;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//2.1
 public class TVSerieJSONRepository implements TVSerieRepository{
     private ArrayList<TVSerie> serier;
 
@@ -33,8 +35,6 @@ public class TVSerieJSONRepository implements TVSerieRepository{
         finally {
             skriveJson(serier, "JsonTestFil.json");
         }
-
-
 
     }
 
@@ -110,5 +110,30 @@ public class TVSerieJSONRepository implements TVSerieRepository{
             }
         }
         return null;
+    }
+
+    //2.3
+    @Override
+    public void lagOgLeggTilEpisode(String tvSerieNavn, int sesongNr, int episodeNr, String episodeTittel, int spilletid, LocalDate utgivelse, String beskrivelse, String bildeURL) {
+        TVSerie riktigSerie = getEnSerie(tvSerieNavn);
+
+        riktigSerie.lagOgLeggTilEpisode(episodeTittel,episodeNr,sesongNr, spilletid, utgivelse, beskrivelse, bildeURL);
+
+        skriveJson(serier, "JsonTestFil.json");
+    }
+
+    @Override
+    public void oppdaterEpisode(String tvSerieNavn, int sesongNr, int episodeNr, String episodeTittel, int spilletid, LocalDate utgivelse, String beskrivelse, String bildeURL) {
+
+    }
+
+    @Override
+    public void slettEpisode(String tvSerieNavn, int sesongNr, int episodeNr) {
+        TVSerie riktigSerie = getEnSerie(tvSerieNavn);
+
+        riktigSerie.slettEpisode(sesongNr, episodeNr);
+
+        skriveJson(serier, "JsonTestFil.json");
+
     }
 }

@@ -135,4 +135,19 @@ public class TVSerieDataRepository implements TVSerieRepository {
         }
         return null;
     }
+
+    @Override
+    public void lagOgLeggTilEpisode(String tvSerieNavn, int sesongNr, int episodeNr, String episodeTittel, int spilletid, LocalDate utgivelse, String beskrivelse, String bildeURL) {
+
+    }
+
+    @Override
+    public void oppdaterEpisode(String tvSerieNavn, int sesongNr, int episodeNr, String episodeTittel, int spilletid, LocalDate utgivelse, String beskrivelse, String bildeURL) {
+
+    }
+
+    @Override
+    public void slettEpisode(String tvSerieNavn, int sesongNr, int episodeNr) {
+
+    }
 }

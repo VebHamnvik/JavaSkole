@@ -9,7 +9,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 
+//2.2
 public class TVSerieCSVRepository implements TVSerieRepository {
     private ArrayList<TVSerie> serie;
     private LinkedHashMap<String, TVSerie> hashSerie = new LinkedHashMap<>();
@@ -68,7 +70,7 @@ public class TVSerieCSVRepository implements TVSerieRepository {
             throw  new RuntimeException(f);
         }
         finally {
-            skriveCSV("CSVtest.csv", serie);
+            skriveCSV("CSVtest2.csv", serie);
         }
     }
 
@@ -80,11 +82,16 @@ public class TVSerieCSVRepository implements TVSerieRepository {
         try (BufferedWriter csvInfo = new BufferedWriter(new FileWriter(filsti))) {
             for (TVSerie tvSerie : tvSerier) {
                 for (Episoder episode : tvSerie.getEpisoder()) {
-                    csvInfo.write(tvSerie.getTittel()+splitter+tvSerie.getBeskrivelse()+splitter+tvSerie.getUtgivelsesdato()+
-                            tvSerie.getBildeUrl()+splitter+episode.getTittel()+splitter+episode.getBeskrivelse()+splitter+
-                            episode.getEpisodeNummer()+splitter+episode.getSesongNummer()+splitter+episode.getSpilletid()+
-                            splitter+episode.getUtgivelsesdato()+splitter+episode.getBildeUrl()+splitter+ episode.getRegissor().getFornavn()+
-                            splitter+episode.getRegissor().getEtternavn()+splitter+episode.getRegissor().getFodselsDato());
+                    csvInfo.write(tvSerie.getTittel()+";"+tvSerie.getBeskrivelse()+";"+tvSerie.getUtgivelsesdato()+";"+
+                            tvSerie.getBildeUrl());
+
+                    csvInfo.write(episode.getTittel()+";"+episode.getBeskrivelse()+";"+
+                            episode.getEpisodeNummer()+";"+episode.getSesongNummer()+";"+episode.getSpilletid()+
+                            ";"+episode.getUtgivelsesdato()+";"+episode.getBildeUrl()+";");
+
+                    csvInfo.write(episode.getRegissor().getFornavn()+";"+episode.getRegissor().getEtternavn()+splitter+episode.getRegissor().getFodselsDato());
+
+                    csvInfo.newLine();
                 }
             }}
         catch (FileNotFoundException e) {
@@ -148,5 +155,21 @@ public class TVSerieCSVRepository implements TVSerieRepository {
             }
         }
         return null;
+    }
+
+    //2.3
+    @Override
+    public void lagOgLeggTilEpisode(String tvSerieNavn, int sesongNr, int episodeNr, String episodeTittel, int spilletid, LocalDate utgivelse, String beskrivelse, String bildeURL) {
+
+    }
+
+    @Override
+    public void oppdaterEpisode(String tvSerieNavn, int sesongNr, int episodeNr, String episodeTittel, int spilletid, LocalDate utgivelse, String beskrivelse, String bildeURL) {
+
+    }
+
+    @Override
+    public void slettEpisode(String tvSerieNavn, int sesongNr, int episodeNr) {
+
     }
 }

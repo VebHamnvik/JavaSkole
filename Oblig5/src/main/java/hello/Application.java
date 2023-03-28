@@ -9,6 +9,7 @@ import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import io.javalin.vue.VueComponent;
+import org.jetbrains.annotations.NotNull;
 
 
 public class Application {
@@ -21,8 +22,8 @@ public class Application {
 
         TVSerieJSONRepository jsonData = new TVSerieJSONRepository("tvshows_10.json");
         TVSerieCSVRepository csvData = new TVSerieCSVRepository("tvshows_10.csv");
-        TvSerieController tvSerieController = new TvSerieController(csvData);
-        EpisodeController episodeController = new EpisodeController(csvData);
+        TvSerieController tvSerieController = new TvSerieController(jsonData);
+        EpisodeController episodeController = new EpisodeController(jsonData);
 
         //VueComponent/frontend
         app.get("/", new VueComponent("hello-world"));
@@ -43,6 +44,14 @@ public class Application {
             @Override
             public void handle(Context ctx) {
                 tvSerieController.getAlleSerier(ctx);
+            }
+        });
+
+        app.get("/tvserie/{tvserie-id}/createepisode", new VueComponent("episode-create"));
+        app.get("api/tvserie/{tvserie-id}/createepisode", new Handler() {
+            @Override
+            public void handle(Context ctx){
+                episodeController.lagOgLeggTilEpisode(ctx);
             }
         });
 
@@ -70,6 +79,15 @@ public class Application {
                 episodeController.getEnEpisode(ctx);
             }
         });
+
+        app.get("/api/tvserie/{tvserie-id}/sesong/{sesong-nr}/episode/{episode-nr}/deleteepisode", new Handler() {
+            @Override
+            public void handle(Context ctx) {
+                episodeController.slettEpisode(ctx);
+            }
+        });
+
+
 
 
 

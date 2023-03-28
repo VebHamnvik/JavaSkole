@@ -1,4 +1,5 @@
 package hello.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
@@ -83,10 +84,12 @@ abstract class Produksjon {
         this.bildeUrl = bildeUrl;
     }
 
+    @JsonIgnore
     public void leggTilRolle(Rolle enRolle) {
         roller.add(enRolle);
     }
 
+    @JsonIgnore
     public void leggTilMangeRoller(ArrayList<Rolle> flereRoller) {
         roller.addAll(flereRoller);
     }

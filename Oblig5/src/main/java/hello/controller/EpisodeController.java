@@ -4,6 +4,7 @@ import hello.model.Episoder;
 import hello.repository.TVSerieRepository;
 import io.javalin.http.Context;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -74,11 +75,31 @@ public class EpisodeController {
         int sesongNr2 = Integer.parseInt(sesongNr1);
         int episodeNr2 = Integer.parseInt(episodeNr1);
 
-
-        //URL: api/tvserie/Witcher/sesong/3/episode/17
-        //api/tvserie/{tvserie-id}/sesong/{sesongNr}/episode/{episodeNr}
-        
-
         ctx.json(tvSerieRepository.getEnEpisode(tvserieNavn, sesongNr2, episodeNr2));
+    }
+
+    public void slettEpisode(Context ctx) {
+        String tvserieNavn = ctx.pathParam("tvserie-id");
+        int sesongNr = Integer.parseInt(ctx.pathParam("sesong-nr"));
+        int episodeNr = Integer.parseInt(ctx.pathParam("episode-nr"));
+
+        tvSerieRepository.slettEpisode(tvserieNavn, sesongNr, episodeNr);
+
+        ctx.redirect("/tvserie/" + tvserieNavn + "/sesong/" + sesongNr);
+    }
+
+
+    public void lagOgLeggTilEpisode(Context ctx) {
+        String tvserieNavn = ctx.pathParam("tvserie-id");
+        String tittel = ctx.formParam("tittel");
+        int sesongNr = Integer.parseInt(ctx.formParam("sesongNummer"));
+        int episodeNr = Integer.parseInt(ctx.formParam("episodeNummer"));
+        String beskrivelse = ctx.formParam("beskrivelse");
+        int spilletid = Integer.parseInt(ctx.formParam("spilletid"));
+        LocalDate utgivelse = LocalDate.parse(ctx.formParam("utgivelsesdato"));
+        String bildeURL = ctx.formParam("bildeUrl");
+
+        tvSerieRepository.lagOgLeggTilEpisode(tvserieNavn,sesongNr, episodeNr,  tittel, spilletid, utgivelse, beskrivelse, bildeURL);
+        ctx.redirect("/tvserie/" + tvserieNavn + "/sesong/" + sesongNr);
     }
 }

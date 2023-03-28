@@ -88,27 +88,30 @@ public class TVSerie implements Comparable<TVSerie>{
         this.bildeUrl = bildeUrl;
     }
 
-    //Metoder
 
     @Override
     public String toString() {
         return "Title: " + tittel + "\nDescription: " + beskrivelse + "\n" + episoder + "\nRelease date: " + utgivelsesdato;
     }
 
-
     public void leggTilEpisode(Episoder episoder) {
-        int sesong = episoder.getSesongNummer();
-        int sjekk = antallSesonger + 1;
-        if (sjekk >= sesong) {
-            this.episoder.add(episoder);
-            this.antallSesonger = sesong;
-            oppdaterGjennomsnitt();
-        } else {
-            System.out.println("ERROR! Du kan ikke legge til denne episoden");
-        }
+        this.episoder.add(episoder);
     }
 
+    public void lagOgLeggTilEpisode(String title, int episodeNummer, int sesongNummer, int spilletid, LocalDate utgivelse, String beskrivelse, String lenke) {
+        Episoder episode = new Episoder(title, episodeNummer, sesongNummer, spilletid, utgivelse, beskrivelse, lenke);
+        leggTilEpisode(episode);
+    }
 
+    //2.3
+    public void slettEpisode(int sesongNr, int episodeNr) {
+        episoder.removeIf(episode -> sesongNr == episode.getSesongNummer() && episodeNr == episode.getEpisodeNummer());
+    }
+
+    //2.4
+
+
+    @JsonIgnore
     public ArrayList<Episoder> hentEpisoderISesong(int sesong) {
         ArrayList<Episoder> riktigSesong = new ArrayList<>();
         for (int v = 0; v < episoder.size(); v++) {
@@ -119,7 +122,7 @@ public class TVSerie implements Comparable<TVSerie>{
         return riktigSesong;
     }
 
-
+    @JsonIgnore
     private double oppdaterGjennomsnitt() {
         double gjennomsnitt = 0;
         for (Episoder episoder : episoder) {
@@ -129,7 +132,7 @@ public class TVSerie implements Comparable<TVSerie>{
         return gjennomsnittligSpilletid;
     }
 
-    //Oppgave
+    @JsonIgnore
     public ArrayList<Rolle> hentRolleBesetning() {
         ArrayList<Rolle> rolleBesetning = new ArrayList<>();
         Set <Rolle> ikkeDuplikater = new HashSet<>();
@@ -141,7 +144,7 @@ public class TVSerie implements Comparable<TVSerie>{
         return rolleBesetning;
     }
 
-
+    @JsonIgnore
     public HashMap<Rolle,Integer> countEpisodes() {
         HashMap<Rolle, Integer> rolleBesetning = new HashMap<>();
         for (Episoder enEpisode: episoder) {
