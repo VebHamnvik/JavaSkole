@@ -75,8 +75,6 @@ public class TVSerieCSVRepository implements TVSerieRepository {
     }
 
 
-
-
     public void skriveCSV(String filsti, ArrayList<TVSerie> tvSerier) {
         String splitter = ";";
         try (BufferedWriter csvInfo = new BufferedWriter(new FileWriter(filsti))) {

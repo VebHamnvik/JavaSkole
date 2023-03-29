@@ -108,7 +108,6 @@ public class TVSerie implements Comparable<TVSerie>{
         episoder.removeIf(episode -> sesongNr == episode.getSesongNummer() && episodeNr == episode.getEpisodeNummer());
     }
 
-    //2.4
 
 
     @JsonIgnore

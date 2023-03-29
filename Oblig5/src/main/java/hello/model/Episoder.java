@@ -30,6 +30,16 @@ public class Episoder extends Produksjon implements Comparable<Episoder>{
         return sesongNummer;
     }
 
+    public void oppdatereEpisode(String tittel, int sesongNr, int episodeNr, int spilletid, String beskrivelse, LocalDate utgivelse, String bildeUrl) {
+        setTittel(tittel);
+        setSesongNummer(sesongNr);
+        setEpisodeNummer(episodeNr);
+        setSpilletid(spilletid);
+        setUtgivelsesdato(utgivelse);
+        setBeskrivelse(beskrivelse);
+        setBildeUrl(bildeUrl);
+    }
+
 
     //Metoder
     @Override

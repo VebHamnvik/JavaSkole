@@ -3,7 +3,6 @@ package hello.repository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import hello.model.Episoder;
-import hello.model.Person;
 import hello.model.TVSerie;
 
 import java.io.File;
@@ -40,21 +39,25 @@ public class TVSerieJSONRepository implements TVSerieRepository{
 
     //Skrive til JSON
     public void skriveJson (ArrayList<TVSerie> serie, String filsti) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
+        Thread filskriver = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ObjectMapper objectMapper = new ObjectMapper();
+                objectMapper.registerModule(new JavaTimeModule());
+                File filnavn = new File(filsti);
 
-        File filnavn = new File(filsti);
-
-        try {
-            //writeWith.... gir fin formatering og linjeskift
-            //Skriver hele listen med TvSerier til JSON i stedet for å bare skrive hvis det har vært noen endringer
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(filnavn, serie);
-        }
-
-        catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("\nJson skriver");
-        }
+                try {
+                    //writeWith.... gir fin formatering og linjeskift
+                    //Skriver hele listen med TvSerier til JSON i stedet for å bare skrive hvis det har vært noen endringer
+                    objectMapper.writerWithDefaultPrettyPrinter().writeValue(filnavn, serie);
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("\nJson skriver");
+                }
+            }
+        });
+        System.out.println("Tråden som skriver til fil: " + filskriver.getName());
     }
 
     @Override
@@ -116,7 +119,6 @@ public class TVSerieJSONRepository implements TVSerieRepository{
     @Override
     public void lagOgLeggTilEpisode(String tvSerieNavn, int sesongNr, int episodeNr, String episodeTittel, int spilletid, LocalDate utgivelse, String beskrivelse, String bildeURL) {
         TVSerie riktigSerie = getEnSerie(tvSerieNavn);
-
         riktigSerie.lagOgLeggTilEpisode(episodeTittel,episodeNr,sesongNr, spilletid, utgivelse, beskrivelse, bildeURL);
 
         skriveJson(serier, "JsonTestFil.json");
@@ -124,7 +126,13 @@ public class TVSerieJSONRepository implements TVSerieRepository{
 
     @Override
     public void oppdaterEpisode(String tvSerieNavn, int sesongNr, int episodeNr, String episodeTittel, int spilletid, LocalDate utgivelse, String beskrivelse, String bildeURL) {
-
+        TVSerie riktigSerie = getEnSerie(tvSerieNavn);
+        for (Episoder episoder : riktigSerie.getEpisoder()) {
+            if (episoder.getSesongNummer() == sesongNr && episoder.getEpisodeNummer() == episodeNr) {
+                episoder.oppdatereEpisode(episodeTittel, sesongNr, episodeNr, spilletid, beskrivelse, utgivelse, bildeURL);
+            }
+        }
+        skriveJson(serier, "JsonTestFil.json");
     }
 
     @Override

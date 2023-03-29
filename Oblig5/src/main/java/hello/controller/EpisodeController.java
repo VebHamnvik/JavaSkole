@@ -7,6 +7,7 @@ import io.javalin.http.Context;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 
 public class EpisodeController {
     private TVSerieRepository tvSerieRepository;
@@ -89,17 +90,42 @@ public class EpisodeController {
     }
 
 
+    public void oppdaterEpisode(Context ctx) {
+        String tvserieNavn = ctx.pathParam("tvserie-id");
+        int sesongNr = Integer.parseInt(ctx.pathParam("sesong-nr"));
+        int episodeNr = Integer.parseInt(ctx.pathParam("episode-nr"));
+
+        tvSerieRepository.getEnEpisode(tvserieNavn, sesongNr, episodeNr);
+
+        String tittel = ctx.formParam("tittel");
+        int nySesongNr = ctx.formParam("sesongNummer") == null ? 1 : Integer.parseInt(ctx.formParam("sesongNummer"));
+        int nyEpisodeNr = ctx.formParam("episodeNummer") == null ? 1 : Integer.parseInt(ctx.formParam("episodeNummer"));
+        String beskrivelse = ctx.formParam("beskrivelse");
+        int spilletid = ctx.formParam("spilletid") == null ? 1 : Integer.parseInt(ctx.formParam("spilletid"));
+        String utgivelse = String.valueOf(ctx.formParam("utgivelsesdato"));
+        String bildeURL = ctx.formParam("bildeUrl");
+
+        tvSerieRepository.oppdaterEpisode(tvserieNavn, nySesongNr, nyEpisodeNr, tittel, spilletid, LocalDate.parse(utgivelse), beskrivelse, bildeURL);
+
+        ctx.redirect("/tvserie/" + tvserieNavn + "/sesong/" + nySesongNr + "/episode/" + nyEpisodeNr);
+
+    }
+
     public void lagOgLeggTilEpisode(Context ctx) {
         String tvserieNavn = ctx.pathParam("tvserie-id");
         String tittel = ctx.formParam("tittel");
-        int sesongNr = Integer.parseInt(ctx.formParam("sesongNummer"));
-        int episodeNr = Integer.parseInt(ctx.formParam("episodeNummer"));
+        int sesongNr = ctx.formParam("sesongNummer") == null ? 1 : Integer.parseInt(ctx.formParam("sesongNummer"));
+        int episodeNr = ctx.formParam("episodeNummer") == null ? 1 : Integer.parseInt(ctx.formParam("episodeNummer"));
+        //int episodeNr = Integer.parseInt(Objects.requireNonNull(ctx.formParam("episodeNummer")));
         String beskrivelse = ctx.formParam("beskrivelse");
-        int spilletid = Integer.parseInt(ctx.formParam("spilletid"));
-        LocalDate utgivelse = LocalDate.parse(ctx.formParam("utgivelsesdato"));
+        int spilletid = ctx.formParam("spilletid") == null ? 1 : Integer.parseInt(ctx.formParam("spilletid"));
+        //int spilletid = Integer.parseInt(ctx.formParam("spilletid"));
+        //LocalDate utgivelse = LocalDate.parse(ctx.formParam("utgivelsesdato"));
+        String utgivelse = String.valueOf(ctx.formParam("utgivelsesdato"));
         String bildeURL = ctx.formParam("bildeUrl");
 
-        tvSerieRepository.lagOgLeggTilEpisode(tvserieNavn,sesongNr, episodeNr,  tittel, spilletid, utgivelse, beskrivelse, bildeURL);
+        tvSerieRepository.lagOgLeggTilEpisode(tvserieNavn,sesongNr, episodeNr,  tittel, spilletid, LocalDate.parse(utgivelse), beskrivelse, bildeURL);
+
         ctx.redirect("/tvserie/" + tvserieNavn + "/sesong/" + sesongNr);
     }
 }
