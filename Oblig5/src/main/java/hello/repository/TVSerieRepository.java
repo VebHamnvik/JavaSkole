@@ -1,7 +1,6 @@
 package hello.repository;
 
 import hello.model.Episoder;
-import hello.model.Person;
 import hello.model.TVSerie;
 
 import java.time.LocalDate;
@@ -18,7 +17,6 @@ public interface TVSerieRepository{
 
     Episoder getEnEpisode(String tvSerieNavn, int sesongNr, int episodeNr);
 
-    //2.3
     void lagOgLeggTilEpisode(String tvSerieNavn, int sesongNr, int episodeNr, String episodeTittel, int spilletid, LocalDate utgivelse, String beskrivelse, String bildeURL);
 
     void oppdaterEpisode(String tvSerieNavn, int sesongNr, int episodeNr, String episodeTittel, int spilletid, LocalDate utgivelse, String beskrivelse, String bildeURL);

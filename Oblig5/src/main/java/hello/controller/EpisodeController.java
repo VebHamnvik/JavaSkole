@@ -119,7 +119,13 @@ public class EpisodeController {
         //int episodeNr = Integer.parseInt(Objects.requireNonNull(ctx.formParam("episodeNummer")));
         String beskrivelse = ctx.formParam("beskrivelse");
         int spilletid = ctx.formParam("spilletid") == null ? 1 : Integer.parseInt(ctx.formParam("spilletid"));
+
+
         //int spilletid = Integer.parseInt(ctx.formParam("spilletid"));
+
+        String tall = "25";
+        int tallet = Integer.parseInt(tall);
+
         //LocalDate utgivelse = LocalDate.parse(ctx.formParam("utgivelsesdato"));
         String utgivelse = String.valueOf(ctx.formParam("utgivelsesdato"));
         String bildeURL = ctx.formParam("bildeUrl");
